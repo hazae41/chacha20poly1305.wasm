@@ -1,0 +1,24 @@
+{
+  "name": "chacha20poly1305_wasm",
+  "type": "module",
+  "collaborators": [
+    "hazae41 <4405263+hazae41@users.noreply.github.com>"
+  ],
+  "description": "WebAssembly port of Chacha20Poly1305",
+  "version": "1.0.0",
+  "license": "Unlicense",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hazae41/chacha20poly1305.wasm"
+  },
+  "files": [
+    "chacha20poly1305_wasm_bg.wasm",
+    "chacha20poly1305_wasm.js",
+    "chacha20poly1305_wasm.d.ts"
+  ],
+  "main": "chacha20poly1305_wasm.js",
+  "types": "chacha20poly1305_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
