@@ -4,7 +4,7 @@
   "collaborators": [
     "hazae41 <4405263+hazae41@users.noreply.github.com>"
   ],
-  "description": "WebAssembly port of Chacha20Poly1305",
+  "description": "WebAssembly port of ChaCha20-Poly1305",
   "version": "1.0.0",
   "license": "Unlicense",
   "repository": {

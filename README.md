@@ -1,6 +1,6 @@
 # chacha20poly1305.wasm
 
-WebAssembly port of Chacha20Poly1305
+WebAssembly port of ChaCha20-Poly1305
 
 ```bash
 npm i @hazae41/chacha20poly1305.wasm
@@ -17,15 +17,15 @@ npm i @hazae41/chacha20poly1305.wasm
 - chacha20poly1305
 
 ## Algorithms
-- Chacha20Poly1305
+- ChaCha20-Poly1305
 
 ## Usage
 
 ```typescript
-import { Chacha20Poly1305Wasm, ChaCha20Poly1305Cipher } from "@hazae41/chacha20poly1305.wasm";
+import { ChaCha20Poly1305Wasm, ChaCha20Poly1305Cipher } from "@hazae41/chacha20poly1305.wasm";
 
 // Wait for WASM to load
-await Chacha20Poly1305Wasm.initBundled();
+await ChaCha20Poly1305Wasm.initBundled();
 
 using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
 using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
