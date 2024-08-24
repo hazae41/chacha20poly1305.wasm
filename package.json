@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@hazae41/chacha20poly1305.wasm",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "WebAssembly port of ChaCha20-Poly1305",
   "homepage": "https://github.com/hazae41/chacha20poly1305.wasm",
   "repository": "github:hazae41/chacha20poly1305.wasm",
