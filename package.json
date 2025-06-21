@@ -63,6 +63,6 @@
     "deno"
   ],
   "peerDependencies": {
-    "@hazae41/memory.wasm": "^1.0.9"
+    "@hazae41/memory.wasm": "^1.0.13"
   }
 }

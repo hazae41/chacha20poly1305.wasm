@@ -1,28 +1,17 @@
 /* tslint:disable */
 /* eslint-disable */
-/**
-*/
+export class ChaCha20Cipher {
+  [Symbol.dispose](): void;
+  constructor(key: Memory, nonce: Memory);
+  seek(position: number): void;
+  apply_keystream(memory: Memory): void;
+}
 export class ChaCha20Poly1305Cipher {
   [Symbol.dispose](): void;
-/**
-* @param {Memory} key
-*/
   constructor(key: Memory);
-/**
-* @param {Memory} message
-* @param {Memory} nonce
-* @returns {Memory}
-*/
   encrypt(message: Memory, nonce: Memory): Memory;
-/**
-* @param {Memory} message
-* @param {Memory} nonce
-* @returns {Memory}
-*/
   decrypt(message: Memory, nonce: Memory): Memory;
 }
-/**
-*/
 export class Memory {
   [Symbol.dispose](): void;
 /**
@@ -48,15 +37,21 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbg_chacha20poly1305cipher_free: (a: number, b: number) => void;
-  readonly chacha20poly1305cipher_new: (a: number, b: number) => void;
-  readonly chacha20poly1305cipher_encrypt: (a: number, b: number, c: number, d: number) => void;
-  readonly chacha20poly1305cipher_decrypt: (a: number, b: number, c: number, d: number) => void;
+  readonly chacha20poly1305cipher_new: (a: number) => [number, number, number];
+  readonly chacha20poly1305cipher_encrypt: (a: number, b: number, c: number) => [number, number, number];
+  readonly chacha20poly1305cipher_decrypt: (a: number, b: number, c: number) => [number, number, number];
+  readonly __wbg_chacha20cipher_free: (a: number, b: number) => void;
+  readonly chacha20cipher_new: (a: number, b: number) => [number, number, number];
+  readonly chacha20cipher_seek: (a: number, b: number) => [number, number];
+  readonly chacha20cipher_apply_keystream: (a: number, b: number) => [number, number];
   readonly __wbg_memory_free: (a: number, b: number) => void;
   readonly memory_new: (a: number, b: number) => number;
   readonly memory_ptr: (a: number) => number;
   readonly memory_len: (a: number) => number;
-  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
+  readonly __wbindgen_export_0: WebAssembly.Table;
+  readonly __externref_table_dealloc: (a: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
+  readonly __wbindgen_start: () => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;
