@@ -1,11 +1,11 @@
 import { assert, test } from "@hazae41/phobos";
-import { ChaCha20Poly1305Cipher, initBundled, Memory } from "./index.js";
+import { ChaCha20Cipher, ChaCha20Poly1305Cipher, initBundled, Memory } from "./index.js";
 
 function equals(a: Uint8Array, b: Uint8Array) {
   return Buffer.from(a).equals(Buffer.from(b))
 }
 
-test("chacha", async () => {
+test("chacha20poly1305", async () => {
   await initBundled()
 
   using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
@@ -18,4 +18,25 @@ test("chacha", async () => {
   using decrypted = chacha.decrypt(encrypted, nonce)
 
   assert(equals(message.bytes, decrypted.bytes))
+})
+
+test("chacha20", async () => {
+  await initBundled()
+
+  using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
+  using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
+  using original = new Memory(crypto.getRandomValues(new Uint8Array(256)))
+  using modified = new Memory(original.bytes)
+
+  using encryptor = new ChaCha20Cipher(key, nonce)
+
+  encryptor.apply_keystream(modified)
+
+  assert(!equals(original.bytes, modified.bytes))
+
+  using decryptor = new ChaCha20Cipher(key, nonce)
+
+  decryptor.apply_keystream(modified)
+
+  assert(equals(original.bytes, modified.bytes))
 })
