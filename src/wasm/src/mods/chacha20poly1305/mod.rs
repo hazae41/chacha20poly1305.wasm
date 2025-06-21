@@ -2,6 +2,8 @@ use wasm_bindgen::prelude::*;
 
 use memory_wasm::Memory;
 
+use crate::rjse;
+
 #[wasm_bindgen]
 pub struct ChaCha20Poly1305Cipher {
     pub(crate) inner: chacha20poly1305::ChaCha20Poly1305,
@@ -14,8 +16,7 @@ impl ChaCha20Poly1305Cipher {
         use chacha20poly1305::ChaCha20Poly1305;
         use chacha20poly1305::KeyInit;
 
-        let result = ChaCha20Poly1305::new_from_slice(&key.inner);
-        let inner = result.map_err(|_| JsError::new("ChaCha20Poly1305Cipher::new"))?;
+        let inner = rjse!(ChaCha20Poly1305::new_from_slice(&key.inner))?;
 
         Ok(Self { inner })
     }
@@ -24,19 +25,23 @@ impl ChaCha20Poly1305Cipher {
     pub fn encrypt(&self, message: &Memory, nonce: &Memory) -> Result<Memory, JsError> {
         use chacha20poly1305::aead::Aead;
 
-        self.inner
+        let memory = rjse!(self
+            .inner
             .encrypt(nonce.inner.as_slice().into(), message.inner.as_slice())
-            .map(Memory::new)
-            .map_err(|_| JsError::new("ChaCha20Poly1305Cipher::encrypt"))
+            .map(Memory::new))?;
+
+        Ok(memory)
     }
 
     #[wasm_bindgen]
     pub fn decrypt(&self, message: &Memory, nonce: &Memory) -> Result<Memory, JsError> {
         use chacha20poly1305::aead::Aead;
 
-        self.inner
+        let memory = rjse!(self
+            .inner
             .decrypt(nonce.inner.as_slice().into(), message.inner.as_slice())
-            .map(Memory::new)
-            .map_err(|_| JsError::new("ChaCha20Poly1305Cipher::decrypt"))
+            .map(Memory::new))?;
+
+        Ok(memory)
     }
 }
