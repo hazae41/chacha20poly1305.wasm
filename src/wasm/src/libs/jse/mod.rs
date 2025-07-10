@@ -8,6 +8,6 @@ macro_rules! rjse {
 #[macro_export]
 macro_rules! ojse {
     ($x:expr) => {
-        $x.ok_or_else(|| JsError::new(format!("Option was None at {}", std::any::type_name_of_val(&|| {}))))
+        $x.ok_or_else(|| JsError::new(&format!("Option was None at {}", std::any::type_name_of_val(&|| {}))))
     };
 }
