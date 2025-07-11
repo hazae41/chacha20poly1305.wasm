@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 
-use crate::rjse;
+use crate::libs::jse::rjse;
 
 use memory_wasm::Memory;
 

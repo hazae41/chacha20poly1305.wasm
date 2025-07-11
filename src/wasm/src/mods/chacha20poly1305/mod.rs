@@ -2,7 +2,7 @@ use wasm_bindgen::prelude::*;
 
 use memory_wasm::Memory;
 
-use crate::rjse;
+use crate::libs::jse::rjse;
 
 #[wasm_bindgen]
 pub struct ChaCha20Poly1305Cipher {
@@ -25,10 +25,7 @@ impl ChaCha20Poly1305Cipher {
     pub fn encrypt(&self, message: &Memory, nonce: &Memory) -> Result<Memory, JsError> {
         use chacha20poly1305::aead::Aead;
 
-        let memory = rjse!(self
-            .inner
-            .encrypt(nonce.inner.as_slice().into(), message.inner.as_slice())
-            .map(Memory::new))?;
+        let memory = rjse!(self.inner.encrypt(nonce.inner.as_slice().into(), message.inner.as_slice()).map(Memory::new))?;
 
         Ok(memory)
     }
@@ -37,10 +34,7 @@ impl ChaCha20Poly1305Cipher {
     pub fn decrypt(&self, message: &Memory, nonce: &Memory) -> Result<Memory, JsError> {
         use chacha20poly1305::aead::Aead;
 
-        let memory = rjse!(self
-            .inner
-            .decrypt(nonce.inner.as_slice().into(), message.inner.as_slice())
-            .map(Memory::new))?;
+        let memory = rjse!(self.inner.decrypt(nonce.inner.as_slice().into(), message.inner.as_slice()).map(Memory::new))?;
 
         Ok(memory)
     }
