@@ -100,6 +100,10 @@ const beforeMemoryJs2 = `export class Memory {
 
 const afterMemoryJs = `export class Memory {
 
+    static get bytes() {
+        return getUint8ArrayMemory0();
+    }
+
     static __wrap(ptr) {
         ptr = ptr >>> 0;
         const obj = Object.create(Memory.prototype);
@@ -171,7 +175,7 @@ const afterMemoryJs = `export class Memory {
 const afterMemoryJs2 = `export class Memory {
 
     static get bytes() {
-        return getUint8ArrayMemory0()
+        return getUint8ArrayMemory0();
     }
 
     __destroy_into_raw() {

@@ -158,6 +158,10 @@ const MemoryFinalization = true
 
 export class Memory {
 
+    static get bytes() {
+        return getUint8ArrayMemory0();
+    }
+
     static __wrap(ptr) {
         ptr = ptr >>> 0;
         const obj = Object.create(Memory.prototype);
