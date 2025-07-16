@@ -170,6 +170,10 @@ const afterMemoryJs = `export class Memory {
 
 const afterMemoryJs2 = `export class Memory {
 
+    static get bytes() {
+        return getUint8ArrayMemory0()
+    }
+
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
