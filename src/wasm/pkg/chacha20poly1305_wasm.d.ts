@@ -13,22 +13,11 @@ export class ChaCha20Poly1305Cipher {
   decrypt(message: Memory, nonce: Memory): Memory;
 }
 export class Memory {
+  static get bytes(): Uint8Array;
   [Symbol.dispose](): void;
-/**
-* @param {Uint8Array} inner
-*/
   constructor(inner: Uint8Array);
-/**
-* @returns {number}
-*/
   ptr(): number;
-/**
-* @returns {number}
-*/
   len(): number;
-/**
-* @returns {Uint8Array}
-*/
   get bytes(): Uint8Array;
 }
 
