@@ -3,10 +3,14 @@
 WebAssembly port of ChaCha20-Poly1305
 
 ```bash
-npm i @hazae41/chacha20poly1305.wasm
+npm i @hazae41/chacha20poly1305-wasm
 ```
 
-[**Node Package 📦**](https://www.npmjs.com/package/@hazae41/chacha20poly1305.wasm)
+```bash
+deno install jsr:@hazae41/chacha20poly1305-wasm
+```
+
+[**📦 NPM**](https://www.npmjs.com/package/@hazae41/chacha20poly1305-wasm) • [**📦 JSR**](https://jsr.io/@hazae41/chacha20poly1305-wasm)
 
 ## Features
 - Reproducible building
@@ -22,16 +26,16 @@ npm i @hazae41/chacha20poly1305.wasm
 ## Usage
 
 ```typescript
-import { ChaCha20Poly1305Wasm, ChaCha20Poly1305Cipher } from "@hazae41/chacha20poly1305.wasm";
+import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305.wasm";
 
 // Wait for WASM to load
-await ChaCha20Poly1305Wasm.initBundled();
+await chaCha20Poly1305Wasm.initBundled();
 
-using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
-using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
-using message = new Memory(crypto.getRandomValues(new Uint8Array(256)))
+using key = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(32)))
+using nonce = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(12)))
+using message = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(256)))
 
-using chacha = new ChaCha20Poly1305Cipher(key)
+using chacha = new chaCha20Poly1305Wasm.ChaCha20Poly1305Cipher(key)
 
 using encrypted = chacha.encrypt(message, nonce)
 using decrypted = chacha.decrypt(encrypted, nonce)
@@ -42,28 +46,12 @@ console.log(decrypted.bytes)
 
 ## Building
 
-### Unreproducible building
-
-You need to install [Rust](https://www.rust-lang.org/tools/install)
-
-Then, install [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
-
-```bash
-cargo install wasm-pack
-```
-
-Finally, do a clean install and build
-
-```bash
-npm ci && npm run build
-```
-
 ### Reproducible building
 
-You can build the exact same bytecode using Docker, just be sure you're on a `linux/amd64` host
+You can build the exact same bytecode using Docker
 
 ```bash
-docker compose up --build
+npm run compile
 ```
 
 Then check that all the files are the same using `npm diff`
@@ -72,7 +60,7 @@ Then check that all the files are the same using `npm diff`
 npm diff
 ```
 
-If the output is empty then the bytecode is the same as the one I commited
+If the output is empty then the bytecode is the same as the one I published on NPM.
 
 ### Automated checks
 

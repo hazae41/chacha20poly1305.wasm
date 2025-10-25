@@ -1,0 +1,60 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@hazae41/memory-wasm@^1.0.46": "1.0.46",
+    "jsr:@hazae41/phobos@^2.0.13": "2.0.13",
+    "jsr:@hazae41/tscousin@^1.0.28": "1.0.28",
+    "npm:@hazae41/phobos@^2.0.13": "2.0.13",
+    "npm:@hazae41/tscousin@^1.0.28": "1.0.28",
+    "npm:@types/node@^24.8.1": "24.8.1",
+    "npm:typescript@^5.9.3": "5.9.3"
+  },
+  "jsr": {
+    "@hazae41/memory-wasm@1.0.46": {
+      "integrity": "b9f467ab93be880d69aefc69a342f6158de34534565193a51a87c4e15afffd28"
+    },
+    "@hazae41/phobos@2.0.13": {
+      "integrity": "f10b48a7feca6b77b548dddcf1e7ee7032c0de3acf0734f088a946d9c7c856d3"
+    },
+    "@hazae41/tscousin@1.0.28": {
+      "integrity": "5218915c136dd5c2b155cec4cdc38915a6cee42db17f3598ad35f47a19afb928"
+    }
+  },
+  "npm": {
+    "@hazae41/phobos@2.0.13": {
+      "integrity": "sha512-5v/hh90e/tGxklBn/uzdUd+TFPgvSusbddVHvDIDGN68SakVCmM1us/X/xPG4Hvo0Elf7UNpaxLUVGfBZ0tHKg=="
+    },
+    "@hazae41/tscousin@1.0.28": {
+      "integrity": "sha512-Wrg/66m0hLexrifpzJ5a/D7Jzb7FhLzBWrCFAgjZa+DIU8prA5rX4MwD5K34UZ6jsYBRZsYwNeVEYRqOIJHOEQ==",
+      "bin": true
+    },
+    "@types/node@24.8.1": {
+      "integrity": "sha512-alv65KGRadQVfVcG69MuB4IzdYVpRwMG/mq8KWOaoOdyY617P5ivaDiMCGOFDWD2sAn5Q0mR3mRtUOgm99hL9Q==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "typescript@5.9.3": {
+      "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==",
+      "bin": true
+    },
+    "undici-types@7.14.0": {
+      "integrity": "sha512-QQiYxHuyZ9gQUIrmPo3IA+hUl4KYk8uSA7cHrcKd/l3p1OTpZcM0Tbp9x7FAtXdAYhlasd60ncPpgu6ihG6TOA=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@hazae41/memory-wasm@^1.0.46",
+      "jsr:@hazae41/phobos@^2.0.13",
+      "jsr:@hazae41/tscousin@^1.0.28"
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:@hazae41/phobos@^2.0.13",
+        "npm:@hazae41/tscousin@^1.0.28",
+        "npm:@types/node@^24.8.1",
+        "npm:typescript@^5.9.3"
+      ]
+    }
+  }
+}

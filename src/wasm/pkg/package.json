@@ -14,7 +14,8 @@
   "files": [
     "chacha20poly1305_wasm_bg.wasm",
     "chacha20poly1305_wasm.js",
-    "chacha20poly1305_wasm.d.ts"
+    "chacha20poly1305_wasm.d.ts",
+    "LICENSE.md"
   ],
   "main": "chacha20poly1305_wasm.js",
   "types": "chacha20poly1305_wasm.d.ts",
