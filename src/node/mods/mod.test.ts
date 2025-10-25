@@ -1,5 +1,6 @@
 import { assert, test } from "@hazae41/phobos";
-import { ChaCha20Cipher, ChaCha20Poly1305Cipher, initBundled, Memory } from "./index.js";
+import { Buffer } from "node:buffer";
+import { ChaCha20Cipher, ChaCha20Poly1305Cipher, initBundled, Memory } from "./mod.ts";
 
 function equals(a: Uint8Array, b: Uint8Array) {
   return Buffer.from(a).equals(Buffer.from(b))
