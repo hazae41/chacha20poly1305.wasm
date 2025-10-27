@@ -26,7 +26,7 @@ deno install jsr:@hazae41/chacha20poly1305-wasm
 ## Usage
 
 ```typescript
-import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305.wasm";
+import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305-wasm";
 
 // Wait for WASM to load
 await chaCha20Poly1305Wasm.initBundled();
