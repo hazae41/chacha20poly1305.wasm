@@ -1,13 +1,13 @@
 import { assert, test } from "@hazae41/phobos";
 import { Buffer } from "node:buffer";
-import { ChaCha20Cipher, ChaCha20Poly1305Cipher, initBundled, Memory } from "./mod.ts";
+import { ChaCha20Cipher, ChaCha20Poly1305Cipher, load, Memory } from "./mod.ts";
 
 function equals(a: Uint8Array, b: Uint8Array) {
   return Buffer.from(a).equals(Buffer.from(b))
 }
 
 test("chacha20poly1305", async () => {
-  await initBundled()
+  await load()
 
   using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
   using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
@@ -22,7 +22,7 @@ test("chacha20poly1305", async () => {
 })
 
 test("chacha20", async () => {
-  await initBundled()
+  await load()
 
   using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
   using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
