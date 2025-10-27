@@ -39,7 +39,7 @@ function passArray8ToWasm0(arg, malloc) {
     return ptr;
 }
 
-const ChaCha20CipherFinalization = true
+const ChaCha20CipherFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_chacha20cipher_free(ptr >>> 0, 1));
 
@@ -48,7 +48,7 @@ export class ChaCha20Cipher {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        ChaCha20CipherFinalization;
+        ChaCha20CipherFinalization.unregister(this);
         return ptr;
     }
 
@@ -68,7 +68,7 @@ export class ChaCha20Cipher {
             throw takeFromExternrefTable0(ret[1]);
         }
         this.__wbg_ptr = ret[0] >>> 0;
-        ChaCha20CipherFinalization;
+        ChaCha20CipherFinalization.register(this, this.__wbg_ptr, this);
         return this;
     }
     /**
@@ -92,7 +92,7 @@ export class ChaCha20Cipher {
     }
 }
 
-const ChaCha20Poly1305CipherFinalization = true
+const ChaCha20Poly1305CipherFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_chacha20poly1305cipher_free(ptr >>> 0, 1));
 
@@ -101,7 +101,7 @@ export class ChaCha20Poly1305Cipher {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        ChaCha20Poly1305CipherFinalization;
+        ChaCha20Poly1305CipherFinalization.unregister(this);
         return ptr;
     }
 
@@ -119,7 +119,7 @@ export class ChaCha20Poly1305Cipher {
             throw takeFromExternrefTable0(ret[1]);
         }
         this.__wbg_ptr = ret[0] >>> 0;
-        ChaCha20Poly1305CipherFinalization;
+        ChaCha20Poly1305CipherFinalization.register(this, this.__wbg_ptr, this);
         return this;
     }
     /**
@@ -152,7 +152,7 @@ export class ChaCha20Poly1305Cipher {
     }
 }
 
-const MemoryFinalization = true
+const MemoryFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_memory_free(ptr >>> 0, 1));
 
@@ -162,7 +162,7 @@ export class Memory {
         ptr = ptr >>> 0;
         const obj = Object.create(Memory.prototype);
         obj.__wbg_ptr = ptr;
-        MemoryFinalization;
+        MemoryFinalization.register(obj, obj.__wbg_ptr, obj);
         return obj;
     }
 
@@ -171,7 +171,7 @@ export class Memory {
         this.__wbg_ptr = 0;
         this.__wbg_ptr0 = 0;
         this.__wbg_len0 = 0;
-        MemoryFinalization;
+        MemoryFinalization.unregister(this);
         return ptr;
     }
 
@@ -189,7 +189,7 @@ export class Memory {
         this.__wbg_ptr = ret >>> 0;
         this.__wbg_ptr0 = ptr0 >>> 0;
         this.__wbg_len0 = len0 >>> 0;
-        MemoryFinalization;
+        MemoryFinalization.register(this, this.__wbg_ptr, this);
         return this;
     }
     /**
