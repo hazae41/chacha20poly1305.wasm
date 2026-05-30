@@ -6,11 +6,9 @@
   "repository": "github:hazae41/chacha20poly1305.wasm",
   "author": "hazae41",
   "scripts": {
+    "compile": "deno run -A ./run/compile.ts",
     "examine": "deno lint ./src/node && deno check ./src/node && deno test ./src/node",
-    "version": "deno -RW ./x.vsync.ts && git add deno.json",
-    "prepare": "deno -RW ./x.dsync.ts && deno install",
-    "compile": "docker compose up --build --exit-code-from app && deno -RW ./patch.wasm.ts",
-    "prepack": "rm -rf ./out && tsc && cp -r ./src/wasm/. ./out/wasm && tscousin && deno -RW ./patch.node.ts"
+    "prepack": "rm -rf ./out && tsc && cp -r ./src/wasm/. ./out/wasm && tscousin && deno run -RW ./run/prepack.ts"
   },
   "files": [
     "./out"
@@ -21,29 +19,27 @@
       "import": "./out/node/mod.js"
     }
   },
-  "devDependencies": {
-    "@hazae41/phobos": "^2.0.13",
-    "@hazae41/tscousin": "^1.0.28",
-    "@types/node": "^24.8.1",
-    "typescript": "^5.9.3"
-  },
   "keywords": [
     "reproducible",
     "webassembly",
-    "cryptography",
-    "incremental",
-    "audited",
-    "ChaCha20Poly1305",
-    "counter",
-    "encryption",
-    "decryption",
+    "memory",
+    "bytes",
+    "reference",
+    "box",
     "browser",
     "typescript",
     "rust",
     "unit-tested",
     "deno"
   ],
+  "devDependencies": {
+    "@hazae41/phobos": "^2.0.16",
+    "@hazae41/tscousin": "^1.0.28",
+    "@types/node": "^25.9.1",
+    "deno": "^2.8.1",
+    "typescript": "^6.0.3"
+  },
   "peerDependencies": {
-    "@hazae41/memory-wasm": "^1.0.46"
+    "@hazae41/memory-wasm": "^2.0.13"
   }
 }

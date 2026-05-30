@@ -3,14 +3,10 @@
 WebAssembly port of ChaCha20-Poly1305
 
 ```bash
-npm i @hazae41/chacha20poly1305-wasm
+npm install --save-peer @hazae41/chacha20poly1305-wasm
 ```
 
-```bash
-deno install jsr:@hazae41/chacha20poly1305-wasm
-```
-
-[**📦 NPM**](https://www.npmjs.com/package/@hazae41/chacha20poly1305-wasm) • [**📦 JSR**](https://jsr.io/@hazae41/chacha20poly1305-wasm)
+[**📦 NPM**](https://www.npmjs.com/package/@hazae41/chacha20poly1305-wasm)
 
 ## Features
 - Reproducible building
@@ -51,7 +47,7 @@ console.log(decrypted.bytes)
 You can build the exact same bytecode using Docker
 
 ```bash
-npm run compile
+npm run compile && npm run prepack
 ```
 
 Then check that all the files are the same using `npm diff`
