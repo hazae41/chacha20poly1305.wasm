@@ -8,7 +8,7 @@
   "scripts": {
     "compile": "deno run -A ./run/compile.ts",
     "examine": "deno lint ./src/node && deno check ./src/node && deno test ./src/node",
-    "prepack": "rm -rf ./out && tsc && cp -r ./src/wasm/. ./out/wasm && tscousin && deno run -RW ./run/prepack.ts"
+    "prepack": "rm -rf ./out && tsc && tscousin && deno run -RW ./run/prepack.ts"
   },
   "files": [
     "./out"
