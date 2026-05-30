@@ -40,6 +40,6 @@
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "@hazae41/memory-wasm": "^2.0.13"
+    "@hazae41/memory-wasm": "^2.0.14"
   }
 }

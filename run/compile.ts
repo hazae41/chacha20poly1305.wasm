@@ -40,13 +40,6 @@ const beforeMemoryJs = `export class Memory {
         wasm.__wbg_memory_free(ptr, 0);
     }
     /**
-     * @returns {number}
-     */
-    len() {
-        const ret = wasm.memory_len(this.__wbg_ptr);
-        return ret >>> 0;
-    }
-    /**
      * @param {Uint8Array} inner
      */
     constructor(inner) {
@@ -62,6 +55,13 @@ const beforeMemoryJs = `export class Memory {
      */
     ptr() {
         const ret = wasm.memory_ptr(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.memory_len(this.__wbg_ptr);
         return ret >>> 0;
     }
 }`
@@ -80,13 +80,6 @@ const beforeMemoryJs2 = `export class Memory {
         wasm.__wbg_memory_free(ptr, 0);
     }
     /**
-     * @returns {number}
-     */
-    len() {
-        const ret = wasm.memory_len(this.__wbg_ptr);
-        return ret >>> 0;
-    }
-    /**
      * @param {Uint8Array} inner
      */
     constructor(inner) {
@@ -104,6 +97,13 @@ const beforeMemoryJs2 = `export class Memory {
         const ret = wasm.memory_ptr(this.__wbg_ptr);
         return ret >>> 0;
     }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.memory_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
 }`
 
 const afterMemoryJs = `export class Memory {
@@ -112,6 +112,8 @@ const afterMemoryJs = `export class Memory {
         ptr = ptr >>> 0;
         const obj = Object.create(Memory.prototype);
         obj.__wbg_ptr = ptr;
+        obj.__wbg_ptr0 = wasm.memory_ptr(ptr) >>> 0;
+        obj.__wbg_len0 = wasm.memory_len(ptr) >>> 0;
         MemoryFinalization.register(obj, obj.__wbg_ptr, obj);
         return obj;
     }
@@ -146,33 +148,19 @@ const afterMemoryJs = `export class Memory {
     * @returns {number}
     */
     ptr() {
-        const ret = wasm.memory_ptr(this.__wbg_ptr);
-        return ret >>> 0;
+        return this.__wbg_ptr0;
     }
     /**
     * @returns {number}
     */
     len() {
-        const ret = wasm.memory_len(this.__wbg_ptr);
-        return ret >>> 0;
-    }
-    /**
-    * @returns {number}
-    */
-    get ptr0() {
-        return this.__wbg_ptr0 ??= this.ptr();
-    }
-    /**
-    * @returns {number}
-    */
-    get len0() {
-        return this.__wbg_len0 ??= this.len();
+        return this.__wbg_len0;
     }
     /**
     * @returns {Uint8Array}
     */
     get bytes() {
-        return getUint8ArrayMemory0().subarray(this.ptr0, this.ptr0 + this.len0);
+        return getUint8ArrayMemory0().subarray(this.__wbg_ptr0, this.__wbg_ptr0 + this.__wbg_len0);
     }
 }`
 
@@ -208,60 +196,35 @@ const afterMemoryJs2 = `export class Memory {
     * @returns {number}
     */
     ptr() {
-        const ret = wasm.memory_ptr(this.__wbg_ptr);
-        return ret >>> 0;
+        return this.__wbg_ptr0;
     }
     /**
     * @returns {number}
     */
     len() {
-        const ret = wasm.memory_len(this.__wbg_ptr);
-        return ret >>> 0;
-    }
-    /**
-    * @returns {number}
-    */
-    get ptr0() {
-        return this.__wbg_ptr0 ??= this.ptr();
-    }
-    /**
-    * @returns {number}
-    */
-    get len0() {
-        return this.__wbg_len0 ??= this.len();
+        return this.__wbg_len0;
     }
     /**
     * @returns {Uint8Array}
     */
     get bytes() {
-        return getUint8ArrayMemory0().subarray(this.ptr0, this.ptr0 + this.len0);
+        return getUint8ArrayMemory0().subarray(this.__wbg_ptr0, this.__wbg_ptr0 + this.__wbg_len0);
     }
 }`
 
+
 const beforeMemoryTs = `export class Memory {
   free(): void;
-  len(): number;
   constructor(inner: Uint8Array);
   ptr(): number;
+  len(): number;
 }`
 
 const afterMemoryTs = `export class Memory {
   free(): void;
-/**
-* @param {Uint8Array} inner
-*/
   constructor(inner: Uint8Array);
-/**
-* @returns {number}
-*/
   ptr(): number;
-/**
-* @returns {number}
-*/
   len(): number;
-/**
-* @returns {Uint8Array}
-*/
   get bytes(): Uint8Array;
 }`
 
