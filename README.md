@@ -25,7 +25,7 @@ npm install --save-peer @hazae41/chacha20poly1305-wasm
 import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305-wasm";
 
 // Wait for WASM to load
-await chaCha20Poly1305Wasm.initBundled();
+await chaCha20Poly1305Wasm.load();
 
 using key = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(32)))
 using nonce = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(12)))
