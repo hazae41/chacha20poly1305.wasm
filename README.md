@@ -3,7 +3,7 @@
 WebAssembly port of ChaCha20-Poly1305
 
 ```bash
-npm install --save-peer @hazae41/chacha20poly1305-wasm
+npm install @hazae41/chacha20poly1305-wasm
 ```
 
 [**📦 NPM**](https://www.npmjs.com/package/@hazae41/chacha20poly1305-wasm)
