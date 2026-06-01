@@ -14,30 +14,62 @@ npm install @hazae41/chacha20poly1305-wasm
 - Zero-copy memory slices
 
 ## Modules
+- chacha20
 - chacha20poly1305
 
 ## Algorithms
+- ChaCha20
 - ChaCha20-Poly1305
 
 ## Usage
 
+### ChaCha20-Poly1305
+
 ```typescript
 import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305-wasm";
 
-// Wait for WASM to load
-await chaCha20Poly1305Wasm.load();
+await chaCha20Poly1305Wasm.load()
 
-using key = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(32)))
-using nonce = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(12)))
-using message = new chaCha20Poly1305Wasm.Memory(crypto.getRandomValues(new Uint8Array(256)))
+const { Memory, ChaCha20Poly1305Cipher } = chaCha20Poly1305Wasm
 
-using chacha = new chaCha20Poly1305Wasm.ChaCha20Poly1305Cipher(key)
+using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
+using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
 
-using encrypted = chacha.encrypt(message, nonce)
-using decrypted = chacha.decrypt(encrypted, nonce)
+using cipher = new ChaCha20Poly1305Cipher(key)
+
+using message = new Memory(crypto.getRandomValues(new Uint8Array(256)))
+
+using encrypted = cipher.encrypt(message, nonce)
+using decrypted = cipher.decrypt(encrypted, nonce)
 
 console.log(encrypted.bytes)
 console.log(decrypted.bytes)
+```
+
+### ChaCha20
+
+```tsx
+import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305-wasm";
+
+await chaCha20Poly1305Wasm.load()
+
+const { Memory, ChaCha20Cipher } = chaCha20Poly1305Wasm
+
+using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
+using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
+
+using encryptor = new ChaCha20Cipher(key, nonce)
+using decryptor = new ChaCha20Cipher(key, nonce)
+
+using memory = new Memory(crypto.getRandomValues(new Uint8Array(256)))
+
+encryptor.apply_keystream(memory)
+
+console.log(memory.bytes)
+
+decryptor.apply_keystream(memory)
+
+console.log(memory.bytes)
 ```
 
 ## Building
