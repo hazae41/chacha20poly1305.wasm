@@ -26,11 +26,9 @@ npm install @hazae41/chacha20poly1305-wasm
 ### ChaCha20-Poly1305
 
 ```typescript
-import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305-wasm";
+import { load, Memory, ChaCha20Poly1305Cipher } from "@hazae41/chacha20poly1305-wasm";
 
-await chaCha20Poly1305Wasm.load()
-
-const { Memory, ChaCha20Poly1305Cipher } = chaCha20Poly1305Wasm
+await load()
 
 using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
 using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
@@ -49,11 +47,9 @@ console.log(decrypted.bytes)
 ### ChaCha20
 
 ```tsx
-import { chaCha20Poly1305Wasm } from "@hazae41/chacha20poly1305-wasm";
+import { load, Memory, ChaCha20Cipher } from "@hazae41/chacha20poly1305-wasm";
 
-await chaCha20Poly1305Wasm.load()
-
-const { Memory, ChaCha20Cipher } = chaCha20Poly1305Wasm
+await load()
 
 using key = new Memory(crypto.getRandomValues(new Uint8Array(32)))
 using nonce = new Memory(crypto.getRandomValues(new Uint8Array(12)))
