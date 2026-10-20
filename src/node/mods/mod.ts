@@ -9,5 +9,5 @@ export async function load(): Promise<InitOutput> {
 }
 
 export function loadSync(): InitOutput {
-  return initSync({ module_or_path: data });
+  return initSync({ module: data });
 }
